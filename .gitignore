@@ -1,0 +1,21 @@
+# Environment
+.env
+*.env
+
+# Database (raw data, not source code)
+db/*.db
+
+# Generated output
+output/report.html
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+venv/
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
