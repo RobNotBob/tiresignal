@@ -7,6 +7,12 @@ and stores results in SQLite. Falls back to SYNTHETIC data if the live fetch fai
 import csv
 import random
 import sqlite3
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
 import time
 from datetime import datetime, date, timedelta
 from pathlib import Path

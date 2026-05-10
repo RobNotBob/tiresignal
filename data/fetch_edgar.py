@@ -3,6 +3,10 @@ Fetches quarterly filings (10-Q, 10-K) for tire companies from SEC EDGAR
 and stores key metrics in SQLite.
 """
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # SEC CIK numbers for major tire companies
 COMPANIES = {
     "Goodyear": "0000042582",

@@ -3,6 +3,10 @@ Fetches stock price and volume data for tire-sector companies via yfinance
 and stores results in SQLite.
 """
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Tire manufacturers and distributors to track
 TICKERS = [
     "GT",   # Goodyear Tire & Rubber
