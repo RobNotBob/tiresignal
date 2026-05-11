@@ -22,6 +22,7 @@ GOODYEAR_CIK = "0000042582"
 EDGAR_URL = f"https://data.sec.gov/api/xbrl/companyfacts/CIK{GOODYEAR_CIK}.json"
 HEADERS = {"User-Agent": "TireSignal/1.0 contact@example.com"}
 
+# XBRL tags are not consistent
 # Prefer the more specific concept; fall back to the broader one
 REVENUE_CONCEPTS = [
     "RevenueFromContractWithCustomerExcludingAssessedTax",
