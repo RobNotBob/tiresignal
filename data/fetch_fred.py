@@ -79,13 +79,13 @@ def _save_to_db(conn: sqlite3.Connection, df: pd.DataFrame) -> None:
     print(f"[fred] Stored {len(rows)} rows to cache.")
 
 
-def get_fred_data() -> pd.DataFrame:
+def get_fred_data(force_refresh: bool = False) -> pd.DataFrame:
     api_key = os.environ["FRED_API_KEY"]
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
 
     try:
-        if _is_cache_fresh(conn):
+        if not force_refresh and _is_cache_fresh(conn):
             print("[fred] Loaded from cache (data is less than 7 days old).")
             return _load_from_cache(conn)
 

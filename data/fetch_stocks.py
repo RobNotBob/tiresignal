@@ -140,13 +140,13 @@ def _save_revenue(conn: sqlite3.Connection, df: pd.DataFrame) -> None:
     print(f"[stocks] Stored {len(rows)} revenue rows to cache.")
 
 
-def get_stock_data() -> dict[str, pd.DataFrame]:
+def get_stock_data(force_refresh: bool = False) -> dict[str, pd.DataFrame]:
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
 
     try:
-        prices_cached = _is_cache_fresh(conn, TABLE_PRICES)
-        revenue_cached = _is_cache_fresh(conn, TABLE_REVENUE)
+        prices_cached = not force_refresh and _is_cache_fresh(conn, TABLE_PRICES)
+        revenue_cached = not force_refresh and _is_cache_fresh(conn, TABLE_REVENUE)
 
         if prices_cached and revenue_cached:
             print("[stocks] Loaded from cache (data is less than 7 days old).")

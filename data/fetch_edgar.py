@@ -110,12 +110,12 @@ def _save_to_db(conn: sqlite3.Connection, df: pd.DataFrame) -> None:
     print(f"[edgar] Stored {len(rows)} rows to cache.")
 
 
-def get_edgar_revenue() -> pd.DataFrame:
+def get_edgar_revenue(force_refresh: bool = False) -> pd.DataFrame:
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
 
     try:
-        if _is_cache_fresh(conn):
+        if not force_refresh and _is_cache_fresh(conn):
             print("[edgar] Loaded from cache (data is less than 7 days old).")
             return _load_from_cache(conn)
 

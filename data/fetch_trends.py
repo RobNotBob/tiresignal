@@ -145,12 +145,12 @@ def _save_to_db(conn: sqlite3.Connection, df: pd.DataFrame, source: str) -> None
     print(f"[trends] Stored {len(rows)} rows to cache (source={source}).")
 
 
-def get_trends_data() -> pd.DataFrame:
+def get_trends_data(force_refresh: bool = False) -> pd.DataFrame:
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
 
     try:
-        if _is_cache_fresh(conn):
+        if not force_refresh and _is_cache_fresh(conn):
             print("[trends] Loaded from cache (data is less than 7 days old).")
             return _load_from_cache(conn)
 
